@@ -1,8 +1,7 @@
 {
-  "name": "soft-assertion-cypress",
+  "name": "cypress-automation-framework",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.6.6"
+    "@badeball/cypress-cucumber-preprocessor": "^20.0.2",
+    "cypress": "^13.6.6",
+    "multiple-cucumber-html-reporter": "^3.6.2"
   }
 }
