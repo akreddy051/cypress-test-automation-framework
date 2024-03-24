@@ -1,7 +1,7 @@
 {
   "json": {
-    "enabled": false,
-    "output": "jsonlogs/log.json",
+    "enabled": true,
+    "output": "cypress/test-outputs/json-reports/cucumberReport.json",
     "formatter": "cucumber-json-formatter.exe"
   },
   "messages": {
@@ -18,5 +18,7 @@
     "[filepath]\\***.{js,ts}",
     "[filepath].{js,ts}",
     "cypress\\integration\\step_definitions\\*.{js,ts}"
-  ]
+  ],
+  "omitFiltered":true,
+  "filterSpecs":true
 }

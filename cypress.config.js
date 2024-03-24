@@ -17,10 +17,22 @@ async function setupNodeEvents(on, config) {
 }
 
 module.exports = defineConfig({
+  defaultCommandTimeout:8000,
+  requestTimeout:20000,
+  responseTimeout:60000,
+  viewportHeight:1080,
+  viewportWidth:1080,
+  video:false,
+  videoCompression:40,
+  trashAssetsBeforeRuns:false,
   e2e: {
+    testIsolation:false,
+    inlineAssets:true,
+    screenshotsFolder:'cypress/test-outputs/screenshots',
+    screenshotOnRunFailure:true,
     setupNodeEvents,
     specPattern: "cypress/integration/features/*.feature",
     baseUrl: "https://www.saucedemo.com",
-    // chromeWebSecurity: false,
+    chromeWebSecurity: false,
   },
 });
