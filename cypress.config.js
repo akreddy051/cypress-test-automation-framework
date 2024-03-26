@@ -5,6 +5,8 @@ const {
 const {
   preprocessor,
 } = require("@badeball/cypress-cucumber-preprocessor/browserify");
+const fs = require('fs')
+const report = require('multiple-cucumber-html-reporter')
 
 
 async function setupNodeEvents(on, config) {
@@ -12,6 +14,9 @@ async function setupNodeEvents(on, config) {
   await addCucumberPreprocessorPlugin(on, config);
 
   on("file:preprocessor", preprocessor(config));
+  on('after:run',()=>{
+    // generateHTMLReport()
+  })
 
   return config;
 }
@@ -36,3 +41,34 @@ module.exports = defineConfig({
     chromeWebSecurity: false,
   },
 });
+
+//This method generates HTML Report after the execution in "test-outputs/html-report" folder
+function generateHTMLReport() {
+  const cucumberJsonDir = './cypress/test-outputs/json-reports'
+  const htmlReportDir = './cypress/test-outputs/html-report'
+  // fetching browser and OS details
+  const readBrowserInfoFileContents = fs.readFileSync('cypress/fixtures/browserInfo.json','utf-8');
+  const parsedBrowserInfo = JSON.parse(readBrowserInfoFileContents)
+  report.generate({
+    openReportInBrowser: true,
+    jsonDir: cucumberJsonDir,
+    reportPath: htmlReportDir,
+    saveCollectedJSON: true,
+    displayDuration: true,
+    displayReportTime: true,
+    removeFolders: true,
+    pageTitle: 'Execution Report',
+    reportName: `Execution Report - ${new Date().toLocaleString()}`,
+    metadata: {
+      browser: {
+        name: parsedBrowserInfo.browserInfo.name,
+        version: parsedBrowserInfo.browserInfo.version,
+      },
+      device: "Local test machine",
+      platform: {
+        name: parsedBrowserInfo.osInfo.name=='darwin'?"osx":parsedBrowserInfo.osInfo.name,
+        version: "Debian GNU/Linux 11 (bullseye)"
+      },
+    },
+  })
+}
