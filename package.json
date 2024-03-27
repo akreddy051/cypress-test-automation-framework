@@ -1,0 +1,17 @@
+{
+  "name": "cypress-automation-framework",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "deleteReport":"del /F /S /Q cypress\\test-outputs && del /F /S /Q cypress\\videos"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^20.0.2",
+    "@cypress/browserify-preprocessor": "^3.0.2",
+    "cypress": "^13.7.1",
+    "multiple-cucumber-html-reporter": "^3.6.2"
+  }
+}
