@@ -24,8 +24,8 @@ function generateHTMLReport() {
       },
       device: "Local test machine",
       platform: {
-        name: parsedBrowserInfo.osInfo.name=='darwin'?"osx":parsedBrowserInfo.osInfo.name,
-        version: "Debian GNU/Linux 11 (bullseye)"
+        name: "Windows",
+        version: "10"
       },
     },
   })
