@@ -14,9 +14,6 @@ async function setupNodeEvents(on, config) {
   await addCucumberPreprocessorPlugin(on, config);
 
   on("file:preprocessor", preprocessor(config));
-  // on('after:run',()=>{
-  //   // generateHTMLReport()
-  // })
 
   return config;
 }

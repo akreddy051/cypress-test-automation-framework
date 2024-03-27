@@ -1,5 +1,4 @@
 Feature: Login page with Tags
-    Feature Login page will work depending on the user credentials with Tags
 
   Background: 
     Given A web browser is at the saucelabs login page - tag demo
