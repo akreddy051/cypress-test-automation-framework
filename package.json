@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "deleteReport":"del /F /S /Q cypress\\test-outputs && del /F /S /Q cypress\\videos"
+    "deleteReport": "del /F /S /Q cypress\\test-outputs && del /F /S /Q cypress\\videos"
   },
   "keywords": [],
   "author": "",
