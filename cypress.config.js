@@ -5,8 +5,6 @@ const {
 const {
   preprocessor,
 } = require("@badeball/cypress-cucumber-preprocessor/browserify");
-const fs = require('fs')
-const report = require('multiple-cucumber-html-reporter')
 
 
 async function setupNodeEvents(on, config) {

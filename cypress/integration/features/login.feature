@@ -3,7 +3,7 @@ Feature: Login page
   Background: 
     Given A web browser is at the saucelabs login page
 
-  @success
+  @success @desktop
   Scenario: Success Login
     When A user enters the username "standard_user", the password "secret_sauce", and clicks on the login button
     Then the url will contains the inventory subdirectory
