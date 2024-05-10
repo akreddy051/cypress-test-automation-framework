@@ -15,13 +15,3 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-let os = require('os')
-
-before(()=>{
-    cy.readFile('cypress/fixtures/browserInfo.json').then((data)=>{
-        data.browserInfo = Cypress.browser
-        data.osInfo.name = Cypress.browser
-        data.osInfo.version = os.release()
-        cy.writeFile('cypress/fixtures/browserInfo.json',JSON.stringify(data))
-    })
-})
