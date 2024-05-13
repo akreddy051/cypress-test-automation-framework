@@ -19,6 +19,6 @@
     "[filepath].{js,ts}",
     "cypress\\integration\\step_definitions\\*.{js,ts}"
   ],
-  "omitFiltered":true,
-  "filterSpecs":true
+  "omitFiltered": true,
+  "filterSpecs": true
 }

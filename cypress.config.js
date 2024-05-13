@@ -7,6 +7,9 @@ const {
 } = require("@badeball/cypress-cucumber-preprocessor/browserify");
 const report = require("multiple-cucumber-html-reporter");
 let browserDetails;
+const fs = require('fs')
+const path = require('path')
+const base64 = require('js-base64')
 
 
 async function setupNodeEvents(on, config) {
@@ -20,6 +23,7 @@ async function setupNodeEvents(on, config) {
   on("after:run", async (results) => {
     await afterRunHandler(config);
     browserDetails = results
+    renameCucumberJSONFile('cypress/test-outputs/json-reports',results.endedTestsAt)
     generateHTMLReport()
   })
 
@@ -73,4 +77,19 @@ function generateHTMLReport() {
       },
     },
   })
+}
+
+function renameCucumberJSONFile(folderPath,timestamp){
+  const newFileName = path.join(folderPath,`cucumber-report-${timestamp}.json`);
+  console.log('file path : ',path.join(folderPath,'cucumberReport.json'))
+  try {
+    const cucumberData = fs.readFileSync(path.join(folderPath,'cucumberReport.json'),'utf-8');
+    console.log("cucumber data: ",cucumberData)
+    fs.writeFileSync(newFileName,cucumberData);
+    console.log(`Created report: ${newFileName}`)
+    fs.unlinkSync(path.join(folderPath,'cucumberReport.json'));
+    console.log('Deleted cucumberReport.json');
+  } catch (error) {
+    console.error('Error deleting cucumberReport.json: ',error)
+  }
 }

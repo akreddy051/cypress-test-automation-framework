@@ -20,7 +20,7 @@ function parseArgs(args) {
             options.headed = true;
         } else if (arg.startsWith('tagPath=')) {
             // While passing the tagPath make sure to enclose the value within the double quotes.
-            options.globPath = arg.replace('tagPath=', '');
+            options.tagPath = arg.replace('tagPath=', '');
         } else if (arg === '--parallel') {
             options.parallel = true;
         } else if (arg.startsWith('features=')) {
@@ -135,9 +135,9 @@ function resolveArguments(command, options) {
     for (const param of envParameters) {
         if (options[param]) {
             if (command.includes('-e')) {
-                command = command.replace('-e ', `-e ${param}='${options[param]}',`);
+                command = command.replace('-e ', `-e ${param}=${options[param]},`);
             } else {
-                command += ` -e ${param}='${options[param]}'`;
+                command += ` -e ${param}=${options[param]}`;
             }
         }
     }
