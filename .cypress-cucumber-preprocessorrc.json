@@ -1,7 +1,7 @@
 {
   "json": {
     "enabled": true,
-    "output": "cypress/test-outputs/json-reports/cucumberReport.json",
+    "output": "cypress/test-output/json-reports/cucumber.json",
     "formatter": "cucumber-json-formatter.exe"
   },
   "messages": {
@@ -14,10 +14,10 @@
   "stepDefinitions": [
     "[filepath]/**/*.{js,ts}",
     "[filepath].{js,ts}",
-    "cypress/integration/step_definitions/*.{js,ts}",
+    "cypress/e2e/step_definitions/*.{js,ts}",
     "[filepath]\\***.{js,ts}",
     "[filepath].{js,ts}",
-    "cypress\\integration\\step_definitions\\*.{js,ts}"
+    "cypress\\e2e\\step_definitions\\*.{js,ts}"
   ],
   "omitFiltered": true,
   "filterSpecs": true

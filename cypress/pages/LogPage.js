@@ -20,6 +20,9 @@ class LoginPage {
 
   submitLogin(username, password) {
     this.elements.usernameInput().type(username);
+    this.elements.usernameInput().invoke('attr','value').then((value)=>{
+      cy.verify(username,value,"TO_EQUAL",true,"validating username")
+    })
     this.elements.passwordInput().type(password);
     this.elements.loginBtn().click();
   }
