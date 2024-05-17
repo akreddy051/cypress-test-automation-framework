@@ -1,6 +1,6 @@
 /node_modules
 /package-lock.json
-/cypress/test-outputs/*
+/cypress/test-output/*
 /cypress/downloads
 **/cypress/videos/*
 /Execution-Reports

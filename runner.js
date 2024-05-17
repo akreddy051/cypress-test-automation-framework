@@ -32,8 +32,8 @@ function parseArgs(args) {
         } else if (arg.startsWith('xvfb=')) {
             // Note: This parameter should only be used in case of Jenkins execution
             options.xvfb = arg.replace('xvfb=', '');
-        } else if(arg.startsWith('allure=')){
-            options.allure=true
+        } else if (arg.startsWith('allure=')) {
+            options.allure = true
         }
     }
     return options;
@@ -70,7 +70,7 @@ async function main() {
         let npmRunAllScript = "run-p -c --max-parallel 5";
         for (const feature of options.features) {
             const scriptName = feature.split('.')[0];
-            const featurePath = findFeatureFileRecursively('cypress/integration/features', feature);
+            const featurePath = findFeatureFileRecursively('cypress/e2e/features', feature);
             const scriptCommand = `npx cypress run --spec ${featurePath}`;
             addScriptToPackageJson(scriptName, resolveArguments(scriptCommand, options));
             scripts.push(scriptName);
@@ -86,14 +86,14 @@ async function main() {
     } else {
         let isTagPathPresent = true
         if (options.featurePath) {
-            const featureFilePath = findFeatureFileRecursively('cypress/integration/features',options.featurePath);
-            if(!featureFilePath){
+            const featureFilePath = findFeatureFileRecursively('cypress/e2e/features', options.featurePath);
+            if (!featureFilePath) {
                 console.error(`Feature file not found: ${options.featurePath}`);
                 process.exit(1);
             }
             options.tagPath = featureFilePath;
         } else if (options.tags) {
-            if(!options.tagPath){
+            if (!options.tagPath) {
                 isTagPathPresent = false;
             }
         } else {
@@ -103,9 +103,9 @@ async function main() {
         console.log(`Running Cypress for feature: ${options.tagPath}`);
         console.log(`Running with tag: ${options.tags}`);
 
-        let command = isTagPathPresent 
-        ? `npx cypress run --spec '${options.tagPath}'`
-        : `npx cypress run`;
+        let command = isTagPathPresent
+            ? `npx cypress run --spec '${options.tagPath}'`
+            : `npx cypress run`;
 
         if (options.xvfb) {
             command = command.replace(/^/, 'xvfb-run -a ');
@@ -113,10 +113,10 @@ async function main() {
 
         await executeCommand(resolveArguments(command, options));
     }
-    if(options.allure){
+    if (options.allure) {
         await executeCommand("npm run allure:report")
-        if(!options.xvfb){
-            await executeCommand("npm allure open cypress/test-outputs/allure-report")
+        if (!options.xvfb) {
+            await executeCommand("npm allure open cypress/test-output/allure-report")
         }
     }
 }

@@ -1,20 +1,31 @@
 {
-  "name": "cypress-automation-framework",
+  "name": "cypress-e2e-test-framework",
   "version": "1.0.0",
-  "description": "",
+  "description": "Cypress E2E Test Automation Framework",
+  "main": "index.js",
   "scripts": {
-    "deleteReport": "rm -rf cypress/test-outputs && rm -rf cypress/videos",
-    "archiveReport": "node 'cypress/support/util/archiveReport.js' && cp -r cypress/test-outputs Execution-Reports/reports && node 'cypress/support/util/renameReport.js' && npm run deleteReport"
+    "deleteReport": "rm -rf cypress/test-output && rm -rf cypress/videos",
+    "archiveReport": "node cypress/support/util/archiveReport.js && cp -r cypress/test-output Execution-Reports/reports && node cypress/support/util/renameReport.js && npm run deleteReport",
+    "allure:report": "allure generate cypress/test-output/allure-results --clean -o cypress/test-output/allure-report"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Akshay R Singadiwar",
   "license": "ISC",
   "devDependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "^20.0.2",
-    "@cypress/browserify-preprocessor": "^3.0.2",
-    "cypress": "^13.7.3",
-    "multiple-cucumber-html-reporter": "^3.6.2",
-    "npm-run-all": "^4.1.5",
+    "@badeball/cypress-cucumber-preprocessor": "latest",
+    "@cypress/browserify-preprocessor": "latest",
+    "@shelex/cypress-allure-plugin": "^2.40.2",
+    "allure-commandline": "^2.27.0",
+    "cypress": "13.9.0",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-network-idle": "^1.14.2",
+    "json-query": "^2.2.2",
+    "multiple-cucumber-html-reporter": "^3.4.0",
+    "mysql": "^2.18.1",
+    "npm-run-all": "^4.1.5"
+  },
+  "dependencies": {
+    "@shelex/promise-queue-timeout": "^1.0.3",
+    "date-fns": "^3.3.1",
     "js-base64": "^3.7.7"
   }
 }
