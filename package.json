@@ -15,7 +15,7 @@
     "@cypress/browserify-preprocessor": "latest",
     "@shelex/cypress-allure-plugin": "^2.40.2",
     "allure-commandline": "^2.27.0",
-    "cypress": "13.9.0",
+    "cypress": "12.14.0",
     "cypress-file-upload": "^5.0.8",
     "cypress-network-idle": "^1.14.2",
     "json-query": "^2.2.2",
