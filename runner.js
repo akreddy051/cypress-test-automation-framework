@@ -116,7 +116,7 @@ async function main() {
     if (options.allure) {
         await executeCommand("npm run allure:report")
         if (!options.xvfb) {
-            await executeCommand("npm allure open cypress/test-output/allure-report")
+            await executeCommand("allure open cypress/test-output/allure-report")
         }
     }
 }
